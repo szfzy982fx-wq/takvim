@@ -13,9 +13,9 @@
             --primary: #2c3e50; 
             --accent: #e67e22; 
             --bg: #eef2f3; 
-            --red: #c0392b;
-            --blue: #2980b9;
-            --green: #27ae60;
+            --red: #e74c3c;
+            --blue: #3498db;
+            --green: #2ecc71;
         }
 
         body { background-color: var(--bg); font-family: 'Segoe UI', Tahoma, sans-serif; color: var(--primary); padding: 15px; }
@@ -27,16 +27,24 @@
         .form-control, .form-select { border-radius: 8px; border: 2px solid #e2e8f0; font-weight: 600; color: #2c3e50; }
         .form-control:focus, .form-select:focus { border-color: var(--accent); box-shadow: none; }
         
-        /* Renk Seçiciler */
+        /* Zarif Renk Seçiciler */
         .color-selector { display: flex; gap: 10px; margin-bottom: 15px; }
-        .color-btn { flex: 1; padding: 10px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; text-align: center; font-weight: bold; color: white; transition: 0.2s; }
-        .color-btn.red { background: var(--red); opacity: 0.6; }
-        .color-btn.blue { background: var(--blue); opacity: 0.6; }
-        .color-btn.green { background: var(--green); opacity: 0.6; }
-        .color-btn.active { opacity: 1; transform: scale(1.05); border-color: #2c3e50; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .color-opt { flex: 1; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #7f8c8d; transition: 0.2s; background: white; }
+        .color-opt:hover { background: #f8fafc; }
+        .color-opt.active { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(44,62,80,0.1); color: var(--primary); }
+        .color-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+        .bg-red { background-color: var(--red); }
+        .bg-blue { background-color: var(--blue); }
+        .bg-green { background-color: var(--green); }
 
         .btn-save { background: var(--primary); color: white; font-weight: bold; border-radius: 8px; padding: 12px; width: 100%; transition: 0.2s; }
         .btn-save:hover { background: #1a252f; color: white; }
+
+        /* Filtre Çubuğu */
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+        .filter-btn { border: 1px solid #e2e8f0; background: white; padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #7f8c8d; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+        .filter-btn:hover { background: #f1f5f9; }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
         /* Ajanda Listesi */
         .agenda-list { max-height: 70vh; overflow-y: auto; padding-right: 5px; }
@@ -48,15 +56,16 @@
         
         .agenda-time { font-size: 1.1rem; font-weight: 900; color: #2c3e50; }
         .agenda-date { font-size: 0.75rem; color: #7f8c8d; font-weight: bold; }
-        .agenda-subject { font-size: 0.95rem; font-weight: 700; margin: 4px 0; }
+        .agenda-subject { font-size: 0.95rem; font-weight: 700; margin: 4px 0; white-space: pre-wrap; word-break: break-word; }
         .agenda-meta { font-size: 0.7rem; color: #95a5a6; display: flex; gap: 8px; }
         
         .btn-action { background: none; border: none; font-size: 1.1rem; cursor: pointer; transition: 0.2s; padding: 5px; }
+        .btn-action.edit { color: #8e44ad; }
         .btn-action.del { color: var(--red); }
         .btn-action.gcal { color: #f39c12; }
         .btn-action:hover { transform: scale(1.2); }
 
-        /* Alarm Modalı (Büyük Kutu) */
+        /* Alarm Modalı */
         .alarm-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 62, 80, 0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         .alarm-box { background: white; width: 90%; max-width: 500px; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
         .alarm-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: var(--accent); animation: pulseColor 1s infinite alternate; }
@@ -66,7 +75,7 @@
         @keyframes bellShake { 0% { transform: rotate(0); } 20% { transform: rotate(15deg); } 40% { transform: rotate(-15deg); } 60% { transform: rotate(10deg); } 80% { transform: rotate(-10deg); } 100% { transform: rotate(0); } }
 
         .alarm-icon { font-size: 4rem; color: var(--accent); margin-bottom: 15px; animation: bellShake 2s infinite ease-in-out; }
-        .alarm-subject { font-size: 1.8rem; font-weight: 900; color: var(--primary); margin-bottom: 10px; }
+        .alarm-subject { font-size: 1.5rem; font-weight: 900; color: var(--primary); margin-bottom: 10px; white-space: pre-wrap; }
         .alarm-time { font-size: 1.2rem; color: #7f8c8d; font-weight: 700; margin-bottom: 25px; }
         
         .alarm-btns { display: flex; gap: 15px; }
@@ -75,7 +84,6 @@
         .btn-snooze { flex: 1; background: #f39c12; color: white; padding: 15px; font-size: 1.1rem; font-weight: bold; border-radius: 10px; border: none; cursor: pointer; transition: 0.2s; }
         .btn-snooze:hover { background: #d68910; transform: translateY(-2px); }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #bdc3c7; border-radius: 10px; }
@@ -94,11 +102,11 @@
     <div class="row">
         <div class="col-lg-5">
             <div class="card-custom">
-                <h5 style="color: var(--primary); font-weight: 800; margin-bottom: 20px;"><i class="fa-solid fa-plus-circle"></i> Yeni Etkinlik / Alarm Kur</h5>
+                <h5 style="color: var(--primary); font-weight: 800; margin-bottom: 20px;"><i class="fa-solid fa-plus-circle"></i> Etkinlik Yönetimi</h5>
                 
                 <div class="mb-3">
                     <label class="form-label">Konu / Açıklama</label>
-                    <input type="text" id="evSubject" class="form-control" placeholder="Örn: X Projesi Tapu Randevusu">
+                    <textarea id="evSubject" class="form-control" rows="5" placeholder="Detaylı konu veya adres bilgisi girebilirsiniz..."></textarea>
                 </div>
 
                 <div class="row mb-3">
@@ -107,28 +115,46 @@
                         <input type="datetime-local" id="evDateTime" class="form-control">
                     </div>
                     <div class="col-6">
-                        <label class="form-label">Ön Hatırlatıcı (Erken Uyarı)</label>
+                        <label class="form-label">Ön Hatırlatıcı</label>
                         <select id="evPreAlarm" class="form-select">
-                            <option value="0">Tam Vaktinde Çal</option>
+                            <option value="0">Tam Vaktinde</option>
+                            <option value="5">5 Dakika Önce</option>
                             <option value="15">15 Dakika Önce</option>
+                            <option value="30">30 Dakika Önce</option>
+                            <option value="45">45 Dakika Önce</option>
                             <option value="60">1 Saat Önce</option>
+                            <option value="120">2 Saat Önce</option>
+                            <option value="180">3 Saat Önce</option>
+                            <option value="240">4 Saat Önce</option>
+                            <option value="300">5 Saat Önce</option>
+                            <option value="360">6 Saat Önce</option>
+                            <option value="420">7 Saat Önce</option>
+                            <option value="480">8 Saat Önce</option>
+                            <option value="540">9 Saat Önce</option>
+                            <option value="600">10 Saat Önce</option>
+                            <option value="660">11 Saat Önce</option>
                             <option value="1440">1 Gün Önce</option>
+                            <option value="2880">2 Gün Önce</option>
+                            <option value="4320">3 Gün Önce</option>
+                            <option value="5760">4 Gün Önce</option>
+                            <option value="7200">5 Gün Önce</option>
+                            <option value="8640">6 Gün Önce</option>
                         </select>
                     </div>
                 </div>
 
-                <label class="form-label">Renk Kodlaması (Kategori)</label>
+                <label class="form-label">Kategori</label>
                 <div class="color-selector">
-                    <div class="color-btn red active" onclick="selectColor('red')">Tapu / Acil</div>
-                    <div class="color-btn blue" onclick="selectColor('blue')">Randevu / Sunum</div>
-                    <div class="color-btn green" onclick="selectColor('green')">Arama / Not</div>
+                    <div class="color-opt active" id="col-red" onclick="selectColor('red')"><span class="color-dot bg-red"></span> Tapu / Acil</div>
+                    <div class="color-opt" id="col-blue" onclick="selectColor('blue')"><span class="color-dot bg-blue"></span> Randevu</div>
+                    <div class="color-opt" id="col-green" onclick="selectColor('green')"><span class="color-dot bg-green"></span> Arama</div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-6">
                         <label class="form-label">Tekrarlama Düzeni</label>
                         <select id="evRecurType" class="form-select" onchange="updateRecurInterval()">
-                            <option value="none">Tekrar Etme (Sadece 1 Kez)</option>
+                            <option value="none">Tekrar Etme</option>
                             <option value="daily">Günlük</option>
                             <option value="weekly">Haftalık</option>
                             <option value="monthly">Aylık</option>
@@ -138,18 +164,28 @@
                     <div class="col-6">
                         <label class="form-label">Sıklık</label>
                         <select id="evRecurInterval" class="form-select" disabled>
-                            <option value="1">Her ...</option>
+                            <option value="1">Standart</option>
                         </select>
                     </div>
                 </div>
 
-                <button class="btn btn-save" onclick="saveEvent()"><i class="fa-solid fa-floppy-disk"></i> ALARMI KAYDET</button>
+                <button class="btn btn-save" id="btnSaveEvent" onclick="saveEvent()"><i class="fa-solid fa-floppy-disk"></i> ALARMI KAYDET</button>
             </div>
         </div>
 
         <div class="col-lg-7">
             <div class="card-custom">
-                <h5 style="color: var(--primary); font-weight: 800; margin-bottom: 20px;"><i class="fa-solid fa-list-check"></i> Yaklaşanlar ve Bugün</h5>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                    <h5 style="color: var(--primary); font-weight: 800; margin: 0;"><i class="fa-solid fa-list-check"></i> Yaklaşanlar ve Bugün</h5>
+                </div>
+                
+                <div class="filter-bar">
+                    <button class="filter-btn active" id="flt-all" onclick="setFilter('all')">Tümü</button>
+                    <button class="filter-btn" id="flt-red" onclick="setFilter('red')"><span class="color-dot bg-red" style="margin-right:4px;"></span> Tapu / Acil</button>
+                    <button class="filter-btn" id="flt-blue" onclick="setFilter('blue')"><span class="color-dot bg-blue" style="margin-right:4px;"></span> Randevu</button>
+                    <button class="filter-btn" id="flt-green" onclick="setFilter('green')"><span class="color-dot bg-green" style="margin-right:4px;"></span> Arama</button>
+                </div>
+
                 <div id="agendaContainer" class="agenda-list">
                     </div>
             </div>
@@ -160,29 +196,37 @@
 <div id="alarmOverlay" class="alarm-overlay">
     <div class="alarm-box">
         <i class="fa-solid fa-bell alarm-icon"></i>
-        <div id="alarmSubject" class="alarm-subject">Tapu Randevusu</div>
+        <div id="alarmSubject" class="alarm-subject">Müşteri Randevusu</div>
         <div id="alarmTimeText" class="alarm-time">Zamanı Geldi: 14:30</div>
         
         <div class="alarm-btns">
-            <button class="btn-snooze" onclick="snoozeAlarm()"><i class="fa-solid fa-clock-rotate-left"></i> ERTELE<br><span style="font-size:0.7rem;">(1 Saat Sonra)</span></button>
-            <button class="btn-stop" onclick="stopAlarm()"><i class="fa-solid fa-check-double"></i> DURDUR<br><span style="font-size:0.7rem;">(Görev Tamamlandı)</span></button>
+            <button class="btn-snooze" onclick="snoozeAlarm()"><i class="fa-solid fa-clock-rotate-left"></i> ERTELE</button>
+            <button class="btn-stop" onclick="stopAlarm()"><i class="fa-solid fa-check-double"></i> DURDUR</button>
         </div>
     </div>
 </div>
-
-<audio id="alarmSound" src="data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU... (Bu kısım yerel tarayıcı sesiyle sentezlenecektir)" preload="auto"></audio>
 
 <script>
     let events = JSON.parse(localStorage.getItem('epa_calendar_events')) || [];
     let selectedColor = 'red';
     let activeAlarmId = null;
     let alarmCheckInterval = null;
+    let editingId = null;
+    let currentFilter = 'all';
 
     // Renk Seçimi
     function selectColor(color) {
         selectedColor = color;
-        document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`.color-btn.${color}`).classList.add('active');
+        document.querySelectorAll('.color-opt').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`col-${color}`).classList.add('active');
+    }
+
+    // Filtreleme Seçimi
+    function setFilter(filterType) {
+        currentFilter = filterType;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`flt-${filterType}`).classList.add('active');
+        renderAgenda();
     }
 
     // Tekrarlama Seçeneklerini Dinamik Güncelleme
@@ -199,9 +243,7 @@
             select.innerHTML = `<option value="1">Her Hafta</option><option value="2">2 Haftada Bir</option><option value="3">3 Haftada Bir</option>`;
         } else if (type === 'monthly') {
             select.disabled = false;
-            for(let i=1; i<=11; i++) {
-                select.innerHTML += `<option value="${i}">${i} Ayda Bir</option>`;
-            }
+            for(let i=1; i<=11; i++) { select.innerHTML += `<option value="${i}">${i} Ayda Bir</option>`; }
         }
     }
 
@@ -209,12 +251,12 @@
     function requestNotificationPermission() {
         if ("Notification" in window) {
             Notification.requestPermission().then(permission => {
-                if (permission === "granted") alert("Bildirimlere başarıyla izin verildi!");
+                if (permission === "granted") alert("Bildirimlere başarıyla izin verildi.");
             });
         }
     }
 
-    // Etkinlik Kaydetme
+    // Etkinlik Kaydetme veya Güncelleme
     function saveEvent() {
         let subject = document.getElementById('evSubject').value;
         let datetime = document.getElementById('evDateTime').value;
@@ -224,24 +266,64 @@
 
         if(!subject || !datetime) { alert("Lütfen konu ve tarih seçiniz!"); return; }
 
-        let newEvent = {
-            id: Date.now().toString(),
-            subject: subject,
-            datetime: datetime, // ISO format: 2026-05-08T14:30
-            color: selectedColor,
-            preAlarm: parseInt(preAlarm),
-            recurType: recurType,
-            recurInterval: parseInt(recurInterval),
-            snoozedUntil: null,
-            isCompleted: false
-        };
+        if (editingId) {
+            // Düzenleme Modu
+            let index = events.findIndex(e => e.id === editingId);
+            if(index > -1) {
+                events[index].subject = subject;
+                events[index].datetime = datetime;
+                events[index].color = selectedColor;
+                events[index].preAlarm = parseInt(preAlarm);
+                events[index].recurType = recurType;
+                events[index].recurInterval = parseInt(recurInterval);
+                events[index].snoozedUntil = null; // Güncellenince ertelemeyi iptal et
+            }
+            editingId = null;
+            document.getElementById('btnSaveEvent').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> ALARMI KAYDET';
+        } else {
+            // Yeni Kayıt Modu
+            let newEvent = {
+                id: Date.now().toString(),
+                subject: subject,
+                datetime: datetime, 
+                color: selectedColor,
+                preAlarm: parseInt(preAlarm),
+                recurType: recurType,
+                recurInterval: parseInt(recurInterval),
+                snoozedUntil: null,
+                isCompleted: false
+            };
+            events.push(newEvent);
+        }
 
-        events.push(newEvent);
         saveAndRender();
         
         // Formu temizle
         document.getElementById('evSubject').value = '';
         document.getElementById('evDateTime').value = '';
+        document.getElementById('evPreAlarm').value = '0';
+        document.getElementById('evRecurType').value = 'none';
+        updateRecurInterval();
+    }
+
+    // Etkinlik Düzenleme (Forma Geri Çağırma)
+    function editEvent(id) {
+        let ev = events.find(e => e.id === id);
+        if(!ev) return;
+        
+        document.getElementById('evSubject').value = ev.subject;
+        document.getElementById('evDateTime').value = ev.datetime;
+        document.getElementById('evPreAlarm').value = ev.preAlarm;
+        document.getElementById('evRecurType').value = ev.recurType;
+        updateRecurInterval();
+        document.getElementById('evRecurInterval').value = ev.recurInterval;
+        selectColor(ev.color);
+        
+        editingId = id;
+        document.getElementById('btnSaveEvent').innerHTML = '<i class="fa-solid fa-pen"></i> ALARMI GÜNCELLE';
+        
+        // Ekranı yukarı kaydır
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function deleteEvent(id) {
@@ -256,18 +338,30 @@
         renderAgenda();
     }
 
+    // Ön Hatırlatıcı Metin Çözücü
+    function getPreAlarmText(val) {
+        if(val == 0) return 'Tam Vaktinde';
+        if(val < 60) return `${val} Dk Önce`;
+        if(val < 1440) return `${val/60} Saat Önce`;
+        return `${val/1440} Gün Önce`;
+    }
+
     // Ajanda Listesini Ekrana Çizme
     function renderAgenda() {
         let container = document.getElementById('agendaContainer');
         container.innerHTML = '';
 
-        // Sadece tamamlanmamış olanları al ve tarihe göre sırala
         let activeEvents = events.filter(e => !e.isCompleted);
+        
+        // Filtreleme Uygula
+        if(currentFilter !== 'all') {
+            activeEvents = activeEvents.filter(e => e.color === currentFilter);
+        }
         
         activeEvents.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
 
         if(activeEvents.length === 0) {
-            container.innerHTML = `<div class="text-center text-muted mt-5"><i class="fa-regular fa-calendar-xmark fa-3x mb-3"></i><br>Yaklaşan bir etkinlik bulunmuyor.</div>`;
+            container.innerHTML = `<div class="text-center text-muted mt-5" style="opacity:0.5;"><i class="fa-regular fa-calendar-xmark fa-3x mb-3"></i><br>Kayıtlı etkinlik bulunamadı.</div>`;
             return;
         }
 
@@ -276,8 +370,7 @@
             let dateStr = dt.toLocaleDateString('tr-TR', { day: '2-digit', month: 'short', year: 'numeric' });
             let timeStr = dt.toLocaleTimeString('tr-TR', { hour: '2-digit', minute:'2-digit' });
             
-            // Google Calendar Linki Oluşturma
-            let endDt = new Date(dt.getTime() + (60*60*1000)); // 1 saatlik
+            let endDt = new Date(dt.getTime() + (60*60*1000)); 
             let formatIso = (date) => date.toISOString().replace(/-|:|\.\d\d\d/g,"");
             let gcalLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ev.subject)}&dates=${formatIso(dt)}/${formatIso(endDt)}`;
 
@@ -290,12 +383,13 @@
                     </div>
                     <div class="agenda-subject">${ev.subject}</div>
                     <div class="agenda-meta">
-                        <span><i class="fa-solid fa-bell"></i> ${ev.preAlarm == 0 ? 'Tam Vaktinde' : ev.preAlarm >= 60 ? (ev.preAlarm/60)+' Saat Önce' : ev.preAlarm+' Dk Önce'}</span>
+                        <span><i class="fa-solid fa-bell"></i> ${getPreAlarmText(ev.preAlarm)}</span>
                         <span><i class="fa-solid fa-arrows-rotate"></i> ${ev.recurType === 'none' ? 'Tekrar Yok' : ev.recurType.toUpperCase()}</span>
                     </div>
                 </div>
-                <div style="margin-left: 15px; display:flex; flex-direction:column; gap:10px;">
+                <div style="margin-left: 15px; display:flex; flex-direction:column; gap:8px;">
                     <a href="${gcalLink}" target="_blank" class="btn-action gcal" title="Google Takvim'e Ekle"><i class="fa-brands fa-google"></i></a>
+                    <button class="btn-action edit" onclick="editEvent('${ev.id}')" title="Düzenle"><i class="fa-solid fa-pen"></i></button>
                     <button class="btn-action del" onclick="deleteEvent('${ev.id}')" title="Sil"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>`;
@@ -303,104 +397,72 @@
         });
     }
 
-    // --- ALARM MOTORU (HER 10 SANİYEDE BİR ÇALIŞIR) ---
+    // --- ALARM MOTORU ---
     function startAlarmEngine() {
         if(alarmCheckInterval) clearInterval(alarmCheckInterval);
         alarmCheckInterval = setInterval(checkAlarms, 10000);
-        checkAlarms(); // İlk açılışta hemen kontrol et
+        checkAlarms(); 
     }
 
     function checkAlarms() {
         let now = new Date().getTime();
-
         events.forEach(ev => {
             if (ev.isCompleted) return;
-
-            // Orijinal tetiklenme zamanı = Etkinlik zamanı - Ön uyarı süresi (dk -> ms)
             let triggerTime = new Date(ev.datetime).getTime() - (ev.preAlarm * 60000);
-            
-            // Eğer ertelenmişse, triggerTime erteleme zamanı olur
-            if (ev.snoozedUntil) {
-                triggerTime = ev.snoozedUntil;
-            }
-
-            // Zamanı geldiyse alarmı çal!
-            if (now >= triggerTime && activeAlarmId !== ev.id) {
-                triggerAlarm(ev);
-            }
+            if (ev.snoozedUntil) triggerTime = ev.snoozedUntil;
+            if (now >= triggerTime && activeAlarmId !== ev.id) triggerAlarm(ev);
         });
     }
 
-    // Tarayıcı Üzerinden Bip Sesi Üretme (Harici dosya kırık link riskini sıfırlar)
     function playBeep() {
         try {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(880, ctx.currentTime); // Tiz nota
-            osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.5); // Kalına kay
-            gain.gain.setValueAtTime(0.3, ctx.currentTime); // Ses seviyesi
+            osc.frequency.setValueAtTime(880, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.5);
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start();
             osc.stop(ctx.currentTime + 0.6);
-        } catch(e) { console.log("Ses çalınamadı."); }
+        } catch(e) {}
     }
 
     function triggerAlarm(ev) {
         activeAlarmId = ev.id;
-        
-        // 1. Ses Çal
         playBeep();
-
-        // 2. Tarayıcı Bildirimi (Push Notification)
         if ("Notification" in window && Notification.permission === "granted") {
-            new Notification("EPA Alarmı: " + ev.subject, {
-                body: "Planlanmış zamanı geldi: " + new Date(ev.datetime).toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'}),
-                icon: "https://ykaracabay-source.github.io/emlakasistani/logo.jpg"
-            });
+            new Notification("EPA Alarmı", { body: ev.subject, icon: "https://ykaracabay-source.github.io/emlakasistani/logo.jpg" });
         }
-
-        // 3. Ana Sekmeyi Yanıp Söndürmek İçin Ana HTML'ye Sinyal Gönder
         window.parent.postMessage({ type: 'EPA_ALARM_START', subject: ev.subject }, '*');
-
-        // 4. Modalı Ekrana Getir
+        
         document.getElementById('alarmSubject').innerText = ev.subject;
         document.getElementById('alarmTimeText').innerText = "Alarm Zamanı: " + new Date(ev.datetime).toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
         document.getElementById('alarmOverlay').style.display = 'flex';
     }
 
-    // ERTELE (1 SAAT)
     function snoozeAlarm() {
         let evIndex = events.findIndex(e => e.id === activeAlarmId);
-        if(evIndex > -1) {
-            // Şimdiki zamana + 1 Saat ekle
-            events[evIndex].snoozedUntil = new Date().getTime() + (60 * 60 * 1000); 
-            saveAndRender();
-        }
+        if(evIndex > -1) { events[evIndex].snoozedUntil = new Date().getTime() + (60 * 60 * 1000); saveAndRender(); }
         closeAlarm();
     }
 
-    // DURDUR VE TEKRARI HESAPLA
     function stopAlarm() {
         let evIndex = events.findIndex(e => e.id === activeAlarmId);
         if(evIndex > -1) {
             let ev = events[evIndex];
-            
-            if(ev.recurType === 'none') {
-                ev.isCompleted = true; // Tekrar etmiyorsa bitir
-            } else {
-                // Tekrar ediyorsa, tarihi ileri sar
+            if(ev.recurType === 'none') { ev.isCompleted = true; } 
+            else {
                 let currentDt = new Date(ev.datetime);
                 if(ev.recurType === 'daily') currentDt.setDate(currentDt.getDate() + 1);
                 else if(ev.recurType === 'weekly') currentDt.setDate(currentDt.getDate() + (7 * ev.recurInterval));
                 else if(ev.recurType === 'monthly') currentDt.setMonth(currentDt.getMonth() + ev.recurInterval);
                 else if(ev.recurType === 'yearly') currentDt.setFullYear(currentDt.getFullYear() + 1);
                 
-                // Formata geri çevir (YYYY-MM-DDTHH:MM)
                 ev.datetime = new Date(currentDt.getTime() - (currentDt.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
-                ev.snoozedUntil = null; // Varsa ertelemeyi sıfırla
+                ev.snoozedUntil = null; 
             }
             saveAndRender();
         }
@@ -410,11 +472,9 @@
     function closeAlarm() {
         document.getElementById('alarmOverlay').style.display = 'none';
         activeAlarmId = null;
-        // Yanıp sönmeyi durdurmak için Ana HTML'ye sinyal gönder
         window.parent.postMessage({ type: 'EPA_ALARM_STOP' }, '*');
     }
 
-    // Sayfa Yüklendiğinde
     window.onload = function() {
         updateRecurInterval();
         renderAgenda();
