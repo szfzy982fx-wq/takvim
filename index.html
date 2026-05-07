@@ -16,6 +16,7 @@
             --red: #e74c3c;
             --blue: #3498db;
             --green: #2ecc71;
+            --border: #e2e8f0;
         }
 
         body { background-color: var(--bg); font-family: 'Segoe UI', Tahoma, sans-serif; color: var(--primary); padding: 15px; }
@@ -24,12 +25,12 @@
         
         .card-custom { background: #fff; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05); padding: 20px; margin-bottom: 20px; }
         .form-label { font-weight: 700; font-size: 0.8rem; color: #7f8c8d; text-transform: uppercase; margin-bottom: 4px;}
-        .form-control, .form-select { border-radius: 8px; border: 2px solid #e2e8f0; font-weight: 600; color: #2c3e50; }
+        .form-control, .form-select { border-radius: 8px; border: 2px solid var(--border); font-weight: 600; color: #2c3e50; }
         .form-control:focus, .form-select:focus { border-color: var(--accent); box-shadow: none; }
         
         /* Zarif Renk Seçiciler */
         .color-selector { display: flex; gap: 10px; margin-bottom: 15px; }
-        .color-opt { flex: 1; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #7f8c8d; transition: 0.2s; background: white; }
+        .color-opt { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #7f8c8d; transition: 0.2s; background: white; }
         .color-opt:hover { background: #f8fafc; }
         .color-opt.active { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(44,62,80,0.1); color: var(--primary); }
         .color-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 8px; }
@@ -40,15 +41,34 @@
         .btn-save { background: var(--primary); color: white; font-weight: bold; border-radius: 8px; padding: 12px; width: 100%; transition: 0.2s; }
         .btn-save:hover { background: #1a252f; color: white; }
 
+        /* Takvim Izgarası (Grid) Tasarımı */
+        .cal-wrapper { border: 1px solid var(--border); border-radius: 10px; padding: 15px; margin-bottom: 15px; background: #fafcff; }
+        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .cal-header button { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--primary); transition: 0.2s; padding: 5px 10px; border-radius: 6px; }
+        .cal-header button:hover { background: var(--border); }
+        .cal-month-year { font-weight: 900; font-size: 1.1rem; color: var(--primary); text-transform: uppercase; }
+        .cal-days-row { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-weight: 800; font-size: 0.75rem; color: #95a5a6; margin-bottom: 5px; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+        .cal-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; transition: 0.2s; position: relative; }
+        .cal-cell:hover:not(.empty) { background: #e2e8f0; }
+        .cal-cell.today { background: #fff5eb; border-color: #fbd38d; color: var(--accent); font-weight: 900; }
+        .cal-cell.selected { background: var(--primary); color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transform: scale(1.05); z-index: 2; }
+        .cal-cell.empty { cursor: default; }
+        .cal-day-num { font-size: 0.95rem; font-weight: 700; }
+        .cal-dots { display: flex; gap: 3px; margin-top: 3px; }
+        .cal-dot-small { width: 6px; height: 6px; border-radius: 50%; }
+
         /* Filtre Çubuğu */
-        .filter-bar { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
-        .filter-btn { border: 1px solid #e2e8f0; background: white; padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #7f8c8d; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn { border: 1px solid var(--border); background: white; padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #7f8c8d; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
         .filter-btn:hover { background: #f1f5f9; }
         .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .btn-show-all { background: var(--accent); color: white; border: none; font-size: 0.75rem; padding: 6px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; display: none; }
 
         /* Ajanda Listesi */
-        .agenda-list { max-height: 70vh; overflow-y: auto; padding-right: 5px; }
-        .agenda-item { background: #fdfdfd; border-left: 5px solid; border-radius: 8px; padding: 15px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center; transition: 0.2s; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .agenda-list { max-height: 45vh; overflow-y: auto; padding-right: 5px; }
+        .agenda-item { background: #fdfdfd; border-left: 5px solid; border-radius: 8px; padding: 15px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center; transition: 0.2s; border: 1px solid #eee; border-left-width: 5px; }
         .agenda-item:hover { transform: translateX(3px); background: #f8f9fa; }
         .agenda-item.cat-red { border-left-color: var(--red); }
         .agenda-item.cat-blue { border-left-color: var(--blue); }
@@ -65,24 +85,26 @@
         .btn-action.gcal { color: #f39c12; }
         .btn-action:hover { transform: scale(1.2); }
 
-        /* Alarm Modalı */
+        /* Alarm Modalı ve Akıllı Erteleme */
         .alarm-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 62, 80, 0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .alarm-box { background: white; width: 90%; max-width: 500px; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
-        .alarm-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 10px; background: var(--accent); animation: pulseColor 1s infinite alternate; }
+        .alarm-box { background: white; width: 90%; max-width: 450px; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
+        .alarm-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: var(--accent); animation: pulseColor 1s infinite alternate; }
         
-        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         @keyframes pulseColor { 0% { background: var(--accent); } 100% { background: var(--red); } }
-        @keyframes bellShake { 0% { transform: rotate(0); } 20% { transform: rotate(15deg); } 40% { transform: rotate(-15deg); } 60% { transform: rotate(10deg); } 80% { transform: rotate(-10deg); } 100% { transform: rotate(0); } }
+        @keyframes bellShake { 0%,100% { transform: rotate(0); } 20%,60% { transform: rotate(15deg); } 40%,80% { transform: rotate(-15deg); } }
 
-        .alarm-icon { font-size: 4rem; color: var(--accent); margin-bottom: 15px; animation: bellShake 2s infinite ease-in-out; }
-        .alarm-subject { font-size: 1.5rem; font-weight: 900; color: var(--primary); margin-bottom: 10px; white-space: pre-wrap; }
-        .alarm-time { font-size: 1.2rem; color: #7f8c8d; font-weight: 700; margin-bottom: 25px; }
+        .alarm-icon { font-size: 3.5rem; color: var(--accent); margin-bottom: 15px; animation: bellShake 2s infinite ease-in-out; }
+        .alarm-subject { font-size: 1.4rem; font-weight: 900; color: var(--primary); margin-bottom: 10px; white-space: pre-wrap; }
+        .alarm-time { font-size: 1.1rem; color: #7f8c8d; font-weight: 700; margin-bottom: 25px; }
         
         .alarm-btns { display: flex; gap: 15px; }
-        .btn-stop { flex: 1; background: var(--green); color: white; padding: 15px; font-size: 1.1rem; font-weight: bold; border-radius: 10px; border: none; cursor: pointer; transition: 0.2s; }
-        .btn-stop:hover { background: #219653; transform: translateY(-2px); }
-        .btn-snooze { flex: 1; background: #f39c12; color: white; padding: 15px; font-size: 1.1rem; font-weight: bold; border-radius: 10px; border: none; cursor: pointer; transition: 0.2s; }
-        .btn-snooze:hover { background: #d68910; transform: translateY(-2px); }
+        .btn-stop { flex: 1; background: var(--green); color: white; padding: 12px; font-size: 1rem; font-weight: bold; border-radius: 10px; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-stop:hover { background: #27ae60; transform: translateY(-2px); }
+        .btn-snooze-init { flex: 1; background: #f39c12; color: white; padding: 12px; font-size: 1rem; font-weight: bold; border-radius: 10px; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-snooze-init:hover { background: #e67e22; transform: translateY(-2px); }
+
+        .smart-snooze-panel { display: none; background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid var(--border); margin-top: 15px; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -175,15 +197,28 @@
 
         <div class="col-lg-7">
             <div class="card-custom">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                    <h5 style="color: var(--primary); font-weight: 800; margin: 0;"><i class="fa-solid fa-list-check"></i> Yaklaşanlar ve Bugün</h5>
-                </div>
                 
+                <div class="cal-wrapper">
+                    <div class="cal-header">
+                        <button onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                        <div class="cal-month-year" id="calMonthYear">Aylık Görünüm</div>
+                        <button onclick="changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="cal-days-row">
+                        <span>PZT</span><span>SAL</span><span>ÇAR</span><span>PER</span><span>CUM</span><span>CMT</span><span>PAZ</span>
+                    </div>
+                    <div class="cal-grid" id="calendarGrid">
+                        </div>
+                </div>
+
                 <div class="filter-bar">
-                    <button class="filter-btn active" id="flt-all" onclick="setFilter('all')">Tümü</button>
-                    <button class="filter-btn" id="flt-red" onclick="setFilter('red')"><span class="color-dot bg-red" style="margin-right:4px;"></span> Tapu / Acil</button>
-                    <button class="filter-btn" id="flt-blue" onclick="setFilter('blue')"><span class="color-dot bg-blue" style="margin-right:4px;"></span> Randevu</button>
-                    <button class="filter-btn" id="flt-green" onclick="setFilter('green')"><span class="color-dot bg-green" style="margin-right:4px;"></span> Arama</button>
+                    <div class="filter-group">
+                        <button class="filter-btn active" id="flt-all" onclick="setFilter('all')">Tümü</button>
+                        <button class="filter-btn" id="flt-red" onclick="setFilter('red')"><span class="color-dot bg-red" style="margin-right:0;"></span></button>
+                        <button class="filter-btn" id="flt-blue" onclick="setFilter('blue')"><span class="color-dot bg-blue" style="margin-right:0;"></span></button>
+                        <button class="filter-btn" id="flt-green" onclick="setFilter('green')"><span class="color-dot bg-green" style="margin-right:0;"></span></button>
+                    </div>
+                    <button class="btn-show-all" id="btnShowAllDates" onclick="clearDateFilter()"><i class="fa-solid fa-calendar-days"></i> TÜM TARİHLERİ GÖSTER</button>
                 </div>
 
                 <div id="agendaContainer" class="agenda-list">
@@ -199,10 +234,31 @@
         <div id="alarmSubject" class="alarm-subject">Müşteri Randevusu</div>
         <div id="alarmTimeText" class="alarm-time">Zamanı Geldi: 14:30</div>
         
-        <div class="alarm-btns">
-            <button class="btn-snooze" onclick="snoozeAlarm()"><i class="fa-solid fa-clock-rotate-left"></i> ERTELE</button>
+        <div class="alarm-btns" id="primaryAlarmBtns">
+            <button class="btn-snooze-init" onclick="openSmartSnooze()"><i class="fa-solid fa-clock-rotate-left"></i> ERTELE</button>
             <button class="btn-stop" onclick="stopAlarm()"><i class="fa-solid fa-check-double"></i> DURDUR</button>
         </div>
+
+        <div class="smart-snooze-panel" id="smartSnoozePanel">
+            <h6 style="color:var(--primary); font-weight:800; margin-bottom:15px; font-size:0.9rem;">NE KADAR ERTELENSİN?</h6>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <select id="snoozeType" class="form-select" onchange="populateSnoozeValues()">
+                        <option value="min">Dakika</option>
+                        <option value="hour">Saat</option>
+                        <option value="day">Gün</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <select id="snoozeVal" class="form-select"></select>
+                </div>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-secondary w-50" style="font-weight:bold;" onclick="cancelSnooze()">İptal</button>
+                <button class="btn btn-warning w-50" style="font-weight:bold; color:#fff;" onclick="applySmartSnooze()"><i class="fa-solid fa-check"></i> Onayla</button>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -214,14 +270,94 @@
     let editingId = null;
     let currentFilter = 'all';
 
-    // Renk Seçimi
+    // Takvim Değişkenleri
+    let today = new Date();
+    let currentCalDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    let selectedFilterDate = null; // Takvimden tıklanan gün
+
+    // --- TAKVİM IZGARASI FONKSİYONLARI ---
+    function renderCalendar() {
+        let year = currentCalDate.getFullYear();
+        let month = currentCalDate.getMonth();
+        
+        // Başlık
+        const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+        document.getElementById('calMonthYear').innerText = `${monthNames[month]} ${year}`;
+
+        let grid = document.getElementById('calendarGrid');
+        grid.innerHTML = '';
+
+        // Ayın ilk gününün haftanın hangi günü olduğunu bul (Pazartesi=1, Pazar=0 -> Pazartesi'yi 0 yapacağız)
+        let firstDay = new Date(year, month, 1).getDay();
+        firstDay = firstDay === 0 ? 6 : firstDay - 1; 
+
+        let daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        // Boş kutular (Ayın ilk gününden önceki günler)
+        for(let i = 0; i < firstDay; i++) {
+            grid.innerHTML += `<div class="cal-cell empty"></div>`;
+        }
+
+        // Günleri oluştur
+        for(let d = 1; d <= daysInMonth; d++) {
+            let cellDate = new Date(year, month, d);
+            let isToday = cellDate.toDateString() === today.toDateString();
+            let isSelected = selectedFilterDate && cellDate.toDateString() === selectedFilterDate.toDateString();
+
+            // Bu güne ait tamamlanmamış etkinlikleri bul (Noktalar için)
+            let dayEvents = events.filter(e => {
+                if(e.isCompleted) return false;
+                let evDate = new Date(e.datetime);
+                return evDate.getFullYear() === year && evDate.getMonth() === month && evDate.getDate() === d;
+            });
+
+            // Renk noktalarını hazırla (Aynı renkten 2 tane varsa 1 tane gösterelim ki kalabalık olmasın)
+            let dotsHtml = '';
+            let addedColors = new Set();
+            dayEvents.forEach(e => {
+                if(!addedColors.has(e.color)) {
+                    dotsHtml += `<div class="cal-dot-small bg-${e.color}"></div>`;
+                    addedColors.add(e.color);
+                }
+            });
+
+            let classList = `cal-cell ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''}`;
+            grid.innerHTML += `
+                <div class="${classList}" onclick="filterByDate(${year}, ${month}, ${d})">
+                    <span class="cal-day-num">${d}</span>
+                    <div class="cal-dots">${dotsHtml}</div>
+                </div>
+            `;
+        }
+    }
+
+    function changeMonth(step) {
+        currentCalDate.setMonth(currentCalDate.getMonth() + step);
+        renderCalendar();
+    }
+
+    function filterByDate(y, m, d) {
+        selectedFilterDate = new Date(y, m, d);
+        document.getElementById('btnShowAllDates').style.display = 'inline-block';
+        renderCalendar();
+        renderAgenda();
+    }
+
+    function clearDateFilter() {
+        selectedFilterDate = null;
+        document.getElementById('btnShowAllDates').style.display = 'none';
+        renderCalendar();
+        renderAgenda();
+    }
+
+
+    // --- TEMEL FORM VE FİLTRE FONKSİYONLARI ---
     function selectColor(color) {
         selectedColor = color;
         document.querySelectorAll('.color-opt').forEach(btn => btn.classList.remove('active'));
         document.getElementById(`col-${color}`).classList.add('active');
     }
 
-    // Filtreleme Seçimi
     function setFilter(filterType) {
         currentFilter = filterType;
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -229,7 +365,6 @@
         renderAgenda();
     }
 
-    // Tekrarlama Seçeneklerini Dinamik Güncelleme
     function updateRecurInterval() {
         let type = document.getElementById('evRecurType').value;
         let select = document.getElementById('evRecurInterval');
@@ -247,7 +382,6 @@
         }
     }
 
-    // Tarayıcı Bildirim İzni İsteme
     function requestNotificationPermission() {
         if ("Notification" in window) {
             Notification.requestPermission().then(permission => {
@@ -256,7 +390,7 @@
         }
     }
 
-    // Etkinlik Kaydetme veya Güncelleme
+    // --- VERİ KAYIT VE LİSTELEME ---
     function saveEvent() {
         let subject = document.getElementById('evSubject').value;
         let datetime = document.getElementById('evDateTime').value;
@@ -267,7 +401,6 @@
         if(!subject || !datetime) { alert("Lütfen konu ve tarih seçiniz!"); return; }
 
         if (editingId) {
-            // Düzenleme Modu
             let index = events.findIndex(e => e.id === editingId);
             if(index > -1) {
                 events[index].subject = subject;
@@ -276,12 +409,11 @@
                 events[index].preAlarm = parseInt(preAlarm);
                 events[index].recurType = recurType;
                 events[index].recurInterval = parseInt(recurInterval);
-                events[index].snoozedUntil = null; // Güncellenince ertelemeyi iptal et
+                events[index].snoozedUntil = null; 
             }
             editingId = null;
             document.getElementById('btnSaveEvent').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> ALARMI KAYDET';
         } else {
-            // Yeni Kayıt Modu
             let newEvent = {
                 id: Date.now().toString(),
                 subject: subject,
@@ -298,7 +430,6 @@
 
         saveAndRender();
         
-        // Formu temizle
         document.getElementById('evSubject').value = '';
         document.getElementById('evDateTime').value = '';
         document.getElementById('evPreAlarm').value = '0';
@@ -306,7 +437,6 @@
         updateRecurInterval();
     }
 
-    // Etkinlik Düzenleme (Forma Geri Çağırma)
     function editEvent(id) {
         let ev = events.find(e => e.id === id);
         if(!ev) return;
@@ -321,8 +451,6 @@
         
         editingId = id;
         document.getElementById('btnSaveEvent').innerHTML = '<i class="fa-solid fa-pen"></i> ALARMI GÜNCELLE';
-        
-        // Ekranı yukarı kaydır
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -335,10 +463,10 @@
 
     function saveAndRender() {
         localStorage.setItem('epa_calendar_events', JSON.stringify(events));
-        renderAgenda();
+        renderCalendar(); // Takvim noktalarını güncelle
+        renderAgenda();   // Listeyi güncelle
     }
 
-    // Ön Hatırlatıcı Metin Çözücü
     function getPreAlarmText(val) {
         if(val == 0) return 'Tam Vaktinde';
         if(val < 60) return `${val} Dk Önce`;
@@ -346,22 +474,27 @@
         return `${val/1440} Gün Önce`;
     }
 
-    // Ajanda Listesini Ekrana Çizme
     function renderAgenda() {
         let container = document.getElementById('agendaContainer');
         container.innerHTML = '';
 
         let activeEvents = events.filter(e => !e.isCompleted);
         
-        // Filtreleme Uygula
+        // 1. Kategori Filtresi
         if(currentFilter !== 'all') {
             activeEvents = activeEvents.filter(e => e.color === currentFilter);
+        }
+
+        // 2. Takvim Tarih Filtresi
+        if(selectedFilterDate) {
+            activeEvents = activeEvents.filter(e => new Date(e.datetime).toDateString() === selectedFilterDate.toDateString());
         }
         
         activeEvents.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
 
         if(activeEvents.length === 0) {
-            container.innerHTML = `<div class="text-center text-muted mt-5" style="opacity:0.5;"><i class="fa-regular fa-calendar-xmark fa-3x mb-3"></i><br>Kayıtlı etkinlik bulunamadı.</div>`;
+            let msg = selectedFilterDate ? "Bu tarihe ait kayıt bulunamadı." : "Kayıtlı etkinlik bulunamadı.";
+            container.innerHTML = `<div class="text-center text-muted mt-5" style="opacity:0.5;"><i class="fa-regular fa-calendar-xmark fa-3x mb-3"></i><br>${msg}</div>`;
             return;
         }
 
@@ -397,7 +530,7 @@
         });
     }
 
-    // --- ALARM MOTORU ---
+    // --- ALARM MOTORU VE AKILLI ERTELEME ---
     function startAlarmEngine() {
         if(alarmCheckInterval) clearInterval(alarmCheckInterval);
         alarmCheckInterval = setInterval(checkAlarms, 10000);
@@ -440,12 +573,54 @@
         
         document.getElementById('alarmSubject').innerText = ev.subject;
         document.getElementById('alarmTimeText').innerText = "Alarm Zamanı: " + new Date(ev.datetime).toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+        
+        // Paneli sıfırla
+        document.getElementById('primaryAlarmBtns').style.display = 'flex';
+        document.getElementById('smartSnoozePanel').style.display = 'none';
+        
         document.getElementById('alarmOverlay').style.display = 'flex';
     }
 
-    function snoozeAlarm() {
+    // Erteleme Arayüzü Mantığı
+    function openSmartSnooze() {
+        document.getElementById('primaryAlarmBtns').style.display = 'none';
+        document.getElementById('smartSnoozePanel').style.display = 'block';
+        populateSnoozeValues(); // İlk değerleri yükle
+    }
+
+    function cancelSnooze() {
+        document.getElementById('smartSnoozePanel').style.display = 'none';
+        document.getElementById('primaryAlarmBtns').style.display = 'flex';
+    }
+
+    function populateSnoozeValues() {
+        let type = document.getElementById('snoozeType').value;
+        let sel = document.getElementById('snoozeVal');
+        sel.innerHTML = '';
+        
+        if(type === 'min') {
+            [5, 15, 30, 45].forEach(v => sel.innerHTML += `<option value="${v}">${v} Dakika</option>`);
+        } else if(type === 'hour') {
+            for(let i=1; i<=11; i++) sel.innerHTML += `<option value="${i}">${i} Saat</option>`;
+        } else if(type === 'day') {
+            for(let i=1; i<=6; i++) sel.innerHTML += `<option value="${i}">${i} Gün</option>`;
+        }
+    }
+
+    function applySmartSnooze() {
+        let type = document.getElementById('snoozeType').value;
+        let val = parseInt(document.getElementById('snoozeVal').value);
+        let msToAdd = 0;
+        
+        if(type === 'min') msToAdd = val * 60000;
+        if(type === 'hour') msToAdd = val * 3600000;
+        if(type === 'day') msToAdd = val * 86400000;
+
         let evIndex = events.findIndex(e => e.id === activeAlarmId);
-        if(evIndex > -1) { events[evIndex].snoozedUntil = new Date().getTime() + (60 * 60 * 1000); saveAndRender(); }
+        if(evIndex > -1) { 
+            events[evIndex].snoozedUntil = new Date().getTime() + msToAdd; 
+            saveAndRender(); 
+        }
         closeAlarm();
     }
 
@@ -475,8 +650,10 @@
         window.parent.postMessage({ type: 'EPA_ALARM_STOP' }, '*');
     }
 
+    // Başlatıcı
     window.onload = function() {
         updateRecurInterval();
+        renderCalendar();
         renderAgenda();
         startAlarmEngine();
     };
