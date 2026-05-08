@@ -19,32 +19,37 @@
             --border: #e2e8f0;
         }
 
+        /* Genel boşluklar daraltıldı */
         body { background-color: var(--bg); font-family: 'Segoe UI', Tahoma, sans-serif; color: var(--primary); padding: 10px; }
         
         .header-title { color: var(--primary); font-weight: 900; font-size: 1.3rem; border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-bottom: 15px; text-transform: uppercase; }
         
-        .card-custom { background: #fff; border-radius: 10px; border: 1px solid #ddd; box-shadow: 0 3px 8px rgba(0,0,0,0.05); padding: 15px; margin-bottom: 15px; }
+        /* Kart boşlukları daraltıldı */
+        .card-custom { background: #fff; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05); padding: 15px; margin-bottom: 15px; }
         .form-label { font-weight: 700; font-size: 0.75rem; color: #7f8c8d; text-transform: uppercase; margin-bottom: 3px;}
-        .form-control, .form-select { border-radius: 6px; border: 2px solid var(--border); font-weight: 600; color: #2c3e50; padding: 8px; font-size: 0.9rem; }
+        .form-control, .form-select { border-radius: 6px; border: 2px solid var(--border); font-weight: 600; color: #2c3e50; padding: 6px 10px; font-size: 0.9rem;}
+        .form-control:focus, .form-select:focus { border-color: var(--accent); box-shadow: none; }
         
-        /* Zarif Renk Seçiciler */
+        /* Zarif Renk Seçiciler - Boyutlar Küçültüldü */
         .color-selector { display: flex; gap: 8px; margin-bottom: 12px; }
-        .color-opt { flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: #7f8c8d; transition: 0.2s; background: white; }
+        .color-opt { flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: #7f8c8d; transition: 0.2s; background: white; }
+        .color-opt:hover { background: #f8fafc; }
         .color-opt.active { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(44,62,80,0.1); color: var(--primary); }
         .color-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; }
         .bg-red { background-color: var(--red); }
         .bg-blue { background-color: var(--blue); }
         .bg-green { background-color: var(--green); }
 
-        .btn-save { background: var(--primary); color: white; font-weight: bold; border-radius: 6px; padding: 10px; width: 100%; transition: 0.2s; border: none; font-size: 0.9rem; }
-        .btn-save:hover { background: #1a252f; transform: translateY(-1px); }
+        .btn-save { background: var(--primary); color: white; font-weight: bold; border-radius: 8px; padding: 10px; width: 100%; transition: 0.2s; font-size: 0.95rem; }
+        .btn-save:hover { background: #1a252f; color: white; }
 
-        /* ULTRA KOMPAKT TAKVİM */
-        .cal-wrapper { border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 10px; background: #fafcff; }
-        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .cal-header button { background: none; border: none; font-size: 1rem; cursor: pointer; color: var(--primary); padding: 2px 8px; }
-        .cal-month-year { font-weight: 900; font-size: 0.95rem; color: var(--primary); text-transform: uppercase; }
-        .cal-days-row { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-weight: 800; font-size: 0.65rem; color: #95a5a6; margin-bottom: 3px; }
+        /* ULTRA KOMPAKT TAKVİM IZGARASI */
+        .cal-wrapper { border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 12px; background: #fafcff; }
+        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .cal-header button { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--primary); transition: 0.2s; padding: 3px 8px; border-radius: 6px; }
+        .cal-header button:hover { background: var(--border); }
+        .cal-month-year { font-weight: 900; font-size: 1rem; color: var(--primary); text-transform: uppercase; }
+        .cal-days-row { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-weight: 800; font-size: 0.7rem; color: #95a5a6; margin-bottom: 4px; }
         .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
         
         .cal-cell { 
@@ -53,45 +58,71 @@
             align-items: center; 
             justify-content: center; 
             gap: 3px; 
-            padding: 6px 2px; /* Dikeyde maksimum daraltma */
-            border-radius: 5px; 
+            padding: 4px 2px; /* Dikeyde maksimum daraltma */
+            border-radius: 6px; 
             cursor: pointer; 
             border: 1px solid transparent; 
-            transition: 0.1s; 
+            transition: 0.2s; 
+            position: relative; 
         }
         .cal-cell:hover:not(.empty) { background: #e2e8f0; }
         .cal-cell.today { background: #fff5eb; border-color: #fbd38d; color: var(--accent); font-weight: 900; }
-        .cal-cell.selected { background: var(--primary); color: white; }
-        .cal-day-num { font-size: 0.85rem; font-weight: 700; }
+        .cal-cell.selected { background: var(--primary); color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transform: scale(1.05); z-index: 2; }
+        .cal-cell.empty { cursor: default; }
+        .cal-day-num { font-size: 0.85rem; font-weight: 700; line-height: 1; }
         .cal-dots { display: flex; gap: 2px; align-items: center; }
         .cal-dot-small { width: 5px; height: 5px; border-radius: 50%; }
 
-        /* KOMPAKT FİLTRE VE LİSTE */
-        .filter-bar { display: flex; gap: 6px; margin-bottom: 10px; align-items: center; justify-content: space-between; }
-        .filter-btn { border: 1px solid var(--border); background: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: bold; cursor: pointer; color: #7f8c8d; }
-        .filter-btn.active { background: var(--primary); color: white; }
-        .btn-show-all { background: var(--accent); color: white; border: none; font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; font-weight: bold; display: none; }
+        /* Filtre Çubuğu */
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+        .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+        .filter-btn { border: 1px solid var(--border); background: white; padding: 4px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: bold; cursor: pointer; color: #7f8c8d; transition: 0.2s; display: flex; align-items: center; gap: 5px; }
+        .filter-btn:hover { background: #f1f5f9; }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .btn-show-all { background: var(--accent); color: white; border: none; font-size: 0.7rem; padding: 4px 10px; border-radius: 6px; font-weight: bold; cursor: pointer; display: none; }
 
+        /* ULTRA KOMPAKT AJANDA LİSTESİ */
         .agenda-list { max-height: 60vh; overflow-y: auto; padding-right: 4px; }
-        .agenda-item { background: #fdfdfd; border-left: 4px solid; border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; border-left-width: 4px; }
-        .agenda-item:hover { background: #f8f9fa; border-color: #ddd; }
+        .agenda-item { background: #fdfdfd; border-left: 4px solid; border-radius: 8px; padding: 8px 12px; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center; transition: 0.2s; border: 1px solid #eee; border-left-width: 4px; }
+        .agenda-item:hover { transform: translateX(2px); background: #f8f9fa; }
+        .agenda-item.cat-red { border-left-color: var(--red); }
+        .agenda-item.cat-blue { border-left-color: var(--blue); }
+        .agenda-item.cat-green { border-left-color: var(--green); }
         
         .agenda-time { font-size: 0.95rem; font-weight: 900; color: #2c3e50; }
         .agenda-date { font-size: 0.65rem; color: #7f8c8d; font-weight: bold; }
-        .agenda-subject { font-size: 0.85rem; font-weight: 700; margin: 2px 0; line-height: 1.3; white-space: pre-wrap; }
+        .agenda-subject { font-size: 0.85rem; font-weight: 700; margin: 2px 0; white-space: pre-wrap; word-break: break-word; line-height: 1.3;}
         .agenda-meta { font-size: 0.65rem; color: #95a5a6; display: flex; gap: 6px; }
         
-        .btn-action { background: none; border: none; font-size: 0.9rem; cursor: pointer; padding: 3px; }
+        .btn-action { background: none; border: none; font-size: 0.95rem; cursor: pointer; transition: 0.2s; padding: 3px; }
         .btn-action.edit { color: #8e44ad; }
         .btn-action.del { color: var(--red); }
         .btn-action.gcal { color: #f39c12; }
+        .btn-action:hover { transform: scale(1.1); }
 
-        /* ALARM MODALI */
-        .alarm-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 62, 80, 0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
-        .alarm-box { background: white; width: 90%; max-width: 400px; border-radius: 15px; padding: 25px; text-align: center; }
-        .alarm-subject { font-size: 1.2rem; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+        /* Alarm Modalı ve Akıllı Erteleme */
+        .alarm-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 62, 80, 0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .alarm-box { background: white; width: 90%; max-width: 400px; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
+        .alarm-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: var(--accent); animation: pulseColor 1s infinite alternate; }
         
-        ::-webkit-scrollbar { width: 4px; }
+        @keyframes pulseColor { 0% { background: var(--accent); } 100% { background: var(--red); } }
+        @keyframes bellShake { 0%,100% { transform: rotate(0); } 20%,60% { transform: rotate(15deg); } 40%,80% { transform: rotate(-15deg); } }
+
+        .alarm-icon { font-size: 3rem; color: var(--accent); margin-bottom: 10px; animation: bellShake 2s infinite ease-in-out; }
+        .alarm-subject { font-size: 1.2rem; font-weight: 900; color: var(--primary); margin-bottom: 8px; white-space: pre-wrap; }
+        .alarm-time { font-size: 1rem; color: #7f8c8d; font-weight: 700; margin-bottom: 20px; }
+        
+        .alarm-btns { display: flex; gap: 10px; }
+        .btn-stop { flex: 1; background: var(--green); color: white; padding: 10px; font-size: 0.9rem; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-stop:hover { background: #27ae60; transform: translateY(-2px); }
+        .btn-snooze-init { flex: 1; background: #f39c12; color: white; padding: 10px; font-size: 0.9rem; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-snooze-init:hover { background: #e67e22; transform: translateY(-2px); }
+
+        .smart-snooze-panel { display: none; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid var(--border); margin-top: 10px; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #bdc3c7; border-radius: 10px; }
     </style>
 </head>
@@ -100,19 +131,19 @@
 <div class="container-fluid">
     <div class="header-title">
         <i class="fa-regular fa-calendar-check" style="color: var(--accent);"></i> Ajanda & Görev Yönetimi
-        <button class="btn btn-sm btn-outline-secondary float-end" onclick="requestNotificationPermission()" style="font-size:0.65rem; font-weight:bold; padding: 2px 8px;">
-            <i class="fa-solid fa-bell"></i> Bildirim İzni
+        <button class="btn btn-sm btn-outline-secondary float-end" onclick="requestNotificationPermission()" style="font-size:0.65rem; font-weight:bold; padding: 4px 8px;">
+            <i class="fa-solid fa-bell"></i> Bildirimlere İzin Ver
         </button>
     </div>
 
     <div class="row">
         <div class="col-lg-5">
             <div class="card-custom">
-                <h6 style="color: var(--primary); font-weight: 800; margin-bottom: 12px; font-size: 0.9rem;"><i class="fa-solid fa-plus-circle"></i> Etkinlik Planla</h6>
+                <h6 style="color: var(--primary); font-weight: 800; margin-bottom: 15px; font-size: 0.9rem;"><i class="fa-solid fa-plus-circle"></i> Etkinlik Yönetimi</h6>
                 
                 <div class="mb-2">
                     <label class="form-label">Konu / Açıklama</label>
-                    <textarea id="evSubject" class="form-control" rows="5" placeholder="Detaylı notlarınızı buraya girebilirsiniz..."></textarea>
+                    <textarea id="evSubject" class="form-control" rows="4" placeholder="Detaylı konu veya adres bilgisi girebilirsiniz..."></textarea>
                 </div>
 
                 <div class="row mb-2">
@@ -124,33 +155,54 @@
                         <label class="form-label">Ön Hatırlatıcı</label>
                         <select id="evPreAlarm" class="form-select">
                             <option value="0">Tam Vaktinde</option>
-                            <option value="5">5 Dk Önce</option><option value="15">15 Dk Önce</option>
-                            <option value="30">30 Dk Önce</option><option value="45">45 Dk Önce</option>
-                            <option value="60">1 Saat Önce</option><option value="120">2 Saat Önce</option>
-                            <option value="1440">1 Gün Önce</option><option value="8640">6 Gün Önce</option>
+                            <option value="5">5 Dakika Önce</option>
+                            <option value="15">15 Dakika Önce</option>
+                            <option value="30">30 Dakika Önce</option>
+                            <option value="45">45 Dakika Önce</option>
+                            <option value="60">1 Saat Önce</option>
+                            <option value="120">2 Saat Önce</option>
+                            <option value="180">3 Saat Önce</option>
+                            <option value="240">4 Saat Önce</option>
+                            <option value="300">5 Saat Önce</option>
+                            <option value="360">6 Saat Önce</option>
+                            <option value="420">7 Saat Önce</option>
+                            <option value="480">8 Saat Önce</option>
+                            <option value="540">9 Saat Önce</option>
+                            <option value="600">10 Saat Önce</option>
+                            <option value="660">11 Saat Önce</option>
+                            <option value="1440">1 Gün Önce</option>
+                            <option value="2880">2 Gün Önce</option>
+                            <option value="4320">3 Gün Önce</option>
+                            <option value="5760">4 Gün Önce</option>
+                            <option value="7200">5 Gün Önce</option>
+                            <option value="8640">6 Gün Önce</option>
                         </select>
                     </div>
                 </div>
 
                 <label class="form-label">Kategori</label>
                 <div class="color-selector">
-                    <div class="color-opt active" id="col-red" onclick="selectColor('red')"><span class="color-dot bg-red"></span> Acil</div>
+                    <div class="color-opt active" id="col-red" onclick="selectColor('red')"><span class="color-dot bg-red"></span> Tapu / Acil</div>
                     <div class="color-opt" id="col-blue" onclick="selectColor('blue')"><span class="color-dot bg-blue"></span> Randevu</div>
                     <div class="color-opt" id="col-green" onclick="selectColor('green')"><span class="color-dot bg-green"></span> Arama</div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-6">
-                        <label class="form-label">Tekrar</label>
+                        <label class="form-label">Tekrarlama Düzeni</label>
                         <select id="evRecurType" class="form-select" onchange="updateRecurInterval()">
-                            <option value="none">Yok</option><option value="daily">Günlük</option>
-                            <option value="weekly">Haftalık</option><option value="monthly">Aylık</option>
+                            <option value="none">Tekrar Etme</option>
+                            <option value="daily">Günlük</option>
+                            <option value="weekly">Haftalık</option>
+                            <option value="monthly">Aylık</option>
                             <option value="yearly">Yıllık</option>
                         </select>
                     </div>
                     <div class="col-6">
                         <label class="form-label">Sıklık</label>
-                        <select id="evRecurInterval" class="form-select" disabled><option value="1">Standart</option></select>
+                        <select id="evRecurInterval" class="form-select" disabled>
+                            <option value="1">Standart</option>
+                        </select>
                     </div>
                 </div>
 
@@ -160,29 +212,32 @@
 
         <div class="col-lg-7">
             <div class="card-custom">
+                
                 <div class="cal-wrapper">
                     <div class="cal-header">
                         <button onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                        <div class="cal-month-year" id="calMonthYear">...</div>
+                        <div class="cal-month-year" id="calMonthYear">Aylık Görünüm</div>
                         <button onclick="changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                     <div class="cal-days-row">
                         <span>PZT</span><span>SAL</span><span>ÇAR</span><span>PER</span><span>CUM</span><span>CMT</span><span>PAZ</span>
                     </div>
-                    <div class="cal-grid" id="calendarGrid"></div>
+                    <div class="cal-grid" id="calendarGrid">
+                        </div>
                 </div>
 
                 <div class="filter-bar">
-                    <div style="display:flex; gap:5px;">
+                    <div class="filter-group">
                         <button class="filter-btn active" id="flt-all" onclick="setFilter('all')">Tümü</button>
-                        <button class="filter-btn" id="flt-red" onclick="setFilter('red')"><span class="color-dot bg-red" style="margin:0;"></span></button>
-                        <button class="filter-btn" id="flt-blue" onclick="setFilter('blue')"><span class="color-dot bg-blue" style="margin:0;"></span></button>
-                        <button class="filter-btn" id="flt-green" onclick="setFilter('green')"><span class="color-dot bg-green" style="margin:0;"></span></button>
+                        <button class="filter-btn" id="flt-red" onclick="setFilter('red')"><span class="color-dot bg-red" style="margin-right:0;"></span></button>
+                        <button class="filter-btn" id="flt-blue" onclick="setFilter('blue')"><span class="color-dot bg-blue" style="margin-right:0;"></span></button>
+                        <button class="filter-btn" id="flt-green" onclick="setFilter('green')"><span class="color-dot bg-green" style="margin-right:0;"></span></button>
                     </div>
-                    <button class="btn-show-all" id="btnShowAllDates" onclick="clearDateFilter()">TÜM TARİHLER</button>
+                    <button class="btn-show-all" id="btnShowAllDates" onclick="clearDateFilter()"><i class="fa-solid fa-calendar-days"></i> TÜM TARİHLERİ GÖSTER</button>
                 </div>
 
-                <div id="agendaContainer" class="agenda-list"></div>
+                <div id="agendaContainer" class="agenda-list">
+                    </div>
             </div>
         </div>
     </div>
@@ -190,25 +245,35 @@
 
 <div id="alarmOverlay" class="alarm-overlay">
     <div class="alarm-box">
-        <i class="fa-solid fa-bell" style="font-size:2.5rem; color:var(--accent); margin-bottom:10px;"></i>
-        <div id="alarmSubject" class="alarm-subject">...</div>
-        <div id="alarmTimeText" style="font-weight:bold; color:#7f8c8d; margin-bottom:20px;">...</div>
+        <i class="fa-solid fa-bell alarm-icon"></i>
+        <div id="alarmSubject" class="alarm-subject">Müşteri Randevusu</div>
+        <div id="alarmTimeText" class="alarm-time">Zamanı Geldi: 14:30</div>
         
-        <div id="primaryAlarmBtns" style="display:flex; gap:10px;">
-            <button class="btn btn-warning w-50" style="font-weight:bold; color:white;" onclick="openSmartSnooze()">ERTELE</button>
-            <button class="btn btn-success w-50" style="font-weight:bold;" onclick="stopAlarm()">DURDUR</button>
+        <div class="alarm-btns" id="primaryAlarmBtns">
+            <button class="btn-snooze-init" onclick="openSmartSnooze()"><i class="fa-solid fa-clock-rotate-left"></i> ERTELE</button>
+            <button class="btn-stop" onclick="stopAlarm()"><i class="fa-solid fa-check-double"></i> DURDUR</button>
         </div>
 
-        <div id="smartSnoozePanel" style="display:none; background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #ddd; margin-top:10px;">
-            <div class="row g-2 mb-3">
-                <div class="col-6"><select id="snoozeType" class="form-select" onchange="populateSnoozeValues()"><option value="min">Dk</option><option value="hour">Saat</option><option value="day">Gün</option></select></div>
-                <div class="col-6"><select id="snoozeVal" class="form-select"></select></div>
+        <div class="smart-snooze-panel" id="smartSnoozePanel">
+            <h6 style="color:var(--primary); font-weight:800; margin-bottom:12px; font-size:0.85rem;">NE KADAR ERTELENSİN?</h6>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <select id="snoozeType" class="form-select" onchange="populateSnoozeValues()">
+                        <option value="min">Dakika</option>
+                        <option value="hour">Saat</option>
+                        <option value="day">Gün</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <select id="snoozeVal" class="form-select"></select>
+                </div>
             </div>
             <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-secondary w-50" onclick="cancelSnooze()">İptal</button>
-                <button class="btn btn-sm btn-warning w-50" style="color:white; font-weight:bold;" onclick="applySmartSnooze()">Onayla</button>
+                <button class="btn btn-sm btn-secondary w-50" style="font-weight:bold;" onclick="cancelSnooze()">İptal</button>
+                <button class="btn btn-sm btn-warning w-50" style="font-weight:bold; color:#fff;" onclick="applySmartSnooze()"><i class="fa-solid fa-check"></i> Onayla</button>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -216,42 +281,136 @@
     let events = JSON.parse(localStorage.getItem('epa_calendar_events')) || [];
     let selectedColor = 'red';
     let activeAlarmId = null;
+    let alarmCheckInterval = null;
     let editingId = null;
     let currentFilter = 'all';
+
+    // Takvim Değişkenleri
     let today = new Date();
     let currentCalDate = new Date(today.getFullYear(), today.getMonth(), 1);
-    let selectedFilterDate = null;
+    let selectedFilterDate = null; 
 
-    // TAKVİM ÇİZİMİ
+    // --- TAKVİM IZGARASI FONKSİYONLARI ---
     function renderCalendar() {
-        let year = currentCalDate.getFullYear(), month = currentCalDate.getMonth();
+        let year = currentCalDate.getFullYear();
+        let month = currentCalDate.getMonth();
+        
         const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
         document.getElementById('calMonthYear').innerText = `${monthNames[month]} ${year}`;
-        let grid = document.getElementById('calendarGrid'); grid.innerHTML = '';
-        let firstDay = new Date(year, month, 1).getDay(); firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+        let grid = document.getElementById('calendarGrid');
+        grid.innerHTML = '';
+
+        let firstDay = new Date(year, month, 1).getDay();
+        firstDay = firstDay === 0 ? 6 : firstDay - 1; 
+
         let daysInMonth = new Date(year, month + 1, 0).getDate();
-        for(let i=0; i<firstDay; i++) grid.innerHTML += `<div class="cal-cell empty"></div>`;
-        for(let d=1; d<=daysInMonth; d++) {
-            let cellDate = new Date(year, month, d), isToday = cellDate.toDateString() === today.toDateString();
+
+        for(let i = 0; i < firstDay; i++) {
+            grid.innerHTML += `<div class="cal-cell empty"></div>`;
+        }
+
+        for(let d = 1; d <= daysInMonth; d++) {
+            let cellDate = new Date(year, month, d);
+            let isToday = cellDate.toDateString() === today.toDateString();
             let isSelected = selectedFilterDate && cellDate.toDateString() === selectedFilterDate.toDateString();
-            let dayEvs = events.filter(e => !e.isCompleted && new Date(e.datetime).toDateString() === cellDate.toDateString());
-            let dots = ''; let addedColors = new Set();
-            dayEvs.forEach(e => { if(!addedColors.has(e.color)) { dots += `<div class="cal-dot-small bg-${e.color}"></div>`; addedColors.add(e.color); }});
-            grid.innerHTML += `<div class="cal-cell ${isToday?'today':''} ${isSelected?'selected':''}" onclick="filterByDate(${year},${month},${d})"><span class="cal-day-num">${d}</span><div class="cal-dots">${dots}</div></div>`;
+
+            let dayEvents = events.filter(e => {
+                if(e.isCompleted) return false;
+                let evDate = new Date(e.datetime);
+                return evDate.getFullYear() === year && evDate.getMonth() === month && evDate.getDate() === d;
+            });
+
+            let dotsHtml = '';
+            let addedColors = new Set();
+            dayEvents.forEach(e => {
+                if(!addedColors.has(e.color)) {
+                    dotsHtml += `<div class="cal-dot-small bg-${e.color}"></div>`;
+                    addedColors.add(e.color);
+                }
+            });
+
+            let classList = `cal-cell ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''}`;
+            grid.innerHTML += `
+                <div class="${classList}" onclick="filterByDate(${year}, ${month}, ${d})">
+                    <span class="cal-day-num">${d}</span>
+                    <div class="cal-dots">${dotsHtml}</div>
+                </div>
+            `;
         }
     }
 
-    function changeMonth(s) { currentCalDate.setMonth(currentCalDate.getMonth()+s); renderCalendar(); }
-    function filterByDate(y,m,d) { selectedFilterDate = new Date(y,m,d); document.getElementById('btnShowAllDates').style.display='inline-block'; renderCalendar(); renderAgenda(); }
-    function clearDateFilter() { selectedFilterDate = null; document.getElementById('btnShowAllDates').style.display='none'; renderCalendar(); renderAgenda(); }
+    function changeMonth(step) {
+        currentCalDate.setMonth(currentCalDate.getMonth() + step);
+        renderCalendar();
+    }
 
-    // KAYIT VE GEÇMİŞ ZAMAN KONTROLÜ
+    function filterByDate(y, m, d) {
+        selectedFilterDate = new Date(y, m, d);
+        document.getElementById('btnShowAllDates').style.display = 'inline-block';
+        renderCalendar();
+        renderAgenda();
+    }
+
+    function clearDateFilter() {
+        selectedFilterDate = null;
+        document.getElementById('btnShowAllDates').style.display = 'none';
+        renderCalendar();
+        renderAgenda();
+    }
+
+
+    // --- TEMEL FORM VE FİLTRE FONKSİYONLARI ---
+    function selectColor(color) {
+        selectedColor = color;
+        document.querySelectorAll('.color-opt').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`col-${color}`).classList.add('active');
+    }
+
+    function setFilter(filterType) {
+        currentFilter = filterType;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`flt-${filterType}`).classList.add('active');
+        renderAgenda();
+    }
+
+    function updateRecurInterval() {
+        let type = document.getElementById('evRecurType').value;
+        let select = document.getElementById('evRecurInterval');
+        select.innerHTML = '';
+        
+        if (type === 'none' || type === 'daily' || type === 'yearly') {
+            select.innerHTML = `<option value="1">Standart</option>`;
+            select.disabled = true;
+        } else if (type === 'weekly') {
+            select.disabled = false;
+            select.innerHTML = `<option value="1">Her Hafta</option><option value="2">2 Haftada Bir</option><option value="3">3 Haftada Bir</option>`;
+        } else if (type === 'monthly') {
+            select.disabled = false;
+            for(let i=1; i<=11; i++) { select.innerHTML += `<option value="${i}">${i} Ayda Bir</option>`; }
+        }
+    }
+
+    function requestNotificationPermission() {
+        if ("Notification" in window) {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") alert("Bildirimlere başarıyla izin verildi.");
+            });
+        }
+    }
+
+    // --- VERİ KAYIT VE LİSTELEME ---
     function saveEvent() {
-        let subj = document.getElementById('evSubject').value, dt = document.getElementById('evDateTime').value;
-        if(!subj || !dt) { alert("Konu ve tarih boş bırakılamaz!"); return; }
+        let subject = document.getElementById('evSubject').value;
+        let datetime = document.getElementById('evDateTime').value;
+        let preAlarm = document.getElementById('evPreAlarm').value;
+        let recurType = document.getElementById('evRecurType').value;
+        let recurInterval = document.getElementById('evRecurInterval').value;
 
-        // --- GEÇMİŞ ZAMAN İKAZI ---
-        let selectedTime = new Date(dt).getTime();
+        if(!subject || !datetime) { alert("Lütfen konu ve tarih seçiniz!"); return; }
+
+        // GEÇMİŞ ZAMAN İKAZI
+        let selectedTime = new Date(datetime).getTime();
         let nowTime = new Date().getTime();
         if (selectedTime < nowTime) {
             alert("⚠️ UYARI: Geçmiş bir tarihe alarm kurulamaz! Lütfen ileri bir zaman seçin.");
@@ -259,76 +418,257 @@
         }
 
         if (editingId) {
-            let idx = events.findIndex(e => e.id === editingId);
-            if(idx>-1) { events[idx] = {...events[idx], subject:subj, datetime:dt, color:selectedColor, preAlarm:parseInt(document.getElementById('evPreAlarm').value), recurType:document.getElementById('evRecurType').value, recurInterval:parseInt(document.getElementById('evRecurInterval').value)}; }
-            editingId = null; document.getElementById('btnSaveEvent').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> ALARMI KAYDET';
+            let index = events.findIndex(e => e.id === editingId);
+            if(index > -1) {
+                events[index].subject = subject;
+                events[index].datetime = datetime;
+                events[index].color = selectedColor;
+                events[index].preAlarm = parseInt(preAlarm);
+                events[index].recurType = recurType;
+                events[index].recurInterval = parseInt(recurInterval);
+                events[index].snoozedUntil = null; 
+            }
+            editingId = null;
+            document.getElementById('btnSaveEvent').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> ALARMI KAYDET';
         } else {
-            events.push({id:Date.now().toString(), subject:subj, datetime:dt, color:selectedColor, preAlarm:parseInt(document.getElementById('evPreAlarm').value), recurType:document.getElementById('evRecurType').value, recurInterval:parseInt(document.getElementById('evRecurInterval').value), isCompleted:false});
+            let newEvent = {
+                id: Date.now().toString(),
+                subject: subject,
+                datetime: datetime, 
+                color: selectedColor,
+                preAlarm: parseInt(preAlarm),
+                recurType: recurType,
+                recurInterval: parseInt(recurInterval),
+                snoozedUntil: null,
+                isCompleted: false
+            };
+            events.push(newEvent);
         }
-        localStorage.setItem('epa_calendar_events', JSON.stringify(events));
-        document.getElementById('evSubject').value = ''; document.getElementById('evDateTime').value = '';
-        renderCalendar(); renderAgenda();
+
+        saveAndRender();
+        
+        document.getElementById('evSubject').value = '';
+        document.getElementById('evDateTime').value = '';
+        document.getElementById('evPreAlarm').value = '0';
+        document.getElementById('evRecurType').value = 'none';
+        updateRecurInterval();
     }
 
-    // LİSTELEME
+    function editEvent(id) {
+        let ev = events.find(e => e.id === id);
+        if(!ev) return;
+        
+        document.getElementById('evSubject').value = ev.subject;
+        document.getElementById('evDateTime').value = ev.datetime;
+        document.getElementById('evPreAlarm').value = ev.preAlarm;
+        document.getElementById('evRecurType').value = ev.recurType;
+        updateRecurInterval();
+        document.getElementById('evRecurInterval').value = ev.recurInterval;
+        selectColor(ev.color);
+        
+        editingId = id;
+        document.getElementById('btnSaveEvent').innerHTML = '<i class="fa-solid fa-pen"></i> ALARMI GÜNCELLE';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function deleteEvent(id) {
+        if(confirm("Bu alarmı silmek istediğinize emin misiniz?")) {
+            events = events.filter(e => e.id !== id);
+            saveAndRender();
+        }
+    }
+
+    function saveAndRender() {
+        localStorage.setItem('epa_calendar_events', JSON.stringify(events));
+        renderCalendar(); 
+        renderAgenda();   
+    }
+
+    function getPreAlarmText(val) {
+        if(val == 0) return 'Tam Vaktinde';
+        if(val < 60) return `${val} Dk Önce`;
+        if(val < 1440) return `${val/60} Saat Önce`;
+        return `${val/1440} Gün Önce`;
+    }
+
     function renderAgenda() {
-        let container = document.getElementById('agendaContainer'); container.innerHTML = '';
-        let list = events.filter(e => !e.isCompleted);
-        if(currentFilter !== 'all') list = list.filter(e => e.color === currentFilter);
-        if(selectedFilterDate) list = list.filter(e => new Date(e.datetime).toDateString() === selectedFilterDate.toDateString());
-        list.sort((a,b) => new Date(a.datetime) - new Date(b.datetime));
-        if(!list.length) { container.innerHTML = '<div class="text-center mt-4 opacity-50" style="font-size:0.8rem;">Plan bulunamadı.</div>'; return; }
-        list.forEach(ev => {
+        let container = document.getElementById('agendaContainer');
+        container.innerHTML = '';
+
+        let activeEvents = events.filter(e => !e.isCompleted);
+        
+        if(currentFilter !== 'all') {
+            activeEvents = activeEvents.filter(e => e.color === currentFilter);
+        }
+
+        if(selectedFilterDate) {
+            activeEvents = activeEvents.filter(e => new Date(e.datetime).toDateString() === selectedFilterDate.toDateString());
+        }
+        
+        activeEvents.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+
+        if(activeEvents.length === 0) {
+            let msg = selectedFilterDate ? "Bu tarihe ait kayıt bulunamadı." : "Kayıtlı etkinlik bulunamadı.";
+            container.innerHTML = `<div class="text-center text-muted mt-5" style="opacity:0.5;"><i class="fa-regular fa-calendar-xmark fa-3x mb-3"></i><br>${msg}</div>`;
+            return;
+        }
+
+        activeEvents.forEach(ev => {
             let dt = new Date(ev.datetime);
-            container.innerHTML += `
-            <div class="agenda-item" style="border-left-color:var(--${ev.color})">
-                <div style="flex:1">
-                    <div class="d-flex justify-content-between"><span class="agenda-date">${dt.toLocaleDateString('tr-TR')}</span><span class="agenda-time">${dt.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})}</span></div>
+            let dateStr = dt.toLocaleDateString('tr-TR', { day: '2-digit', month: 'short', year: 'numeric' });
+            let timeStr = dt.toLocaleTimeString('tr-TR', { hour: '2-digit', minute:'2-digit' });
+            
+            let endDt = new Date(dt.getTime() + (60*60*1000)); 
+            let formatIso = (date) => date.toISOString().replace(/-|:|\.\d\d\d/g,"");
+            let gcalLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ev.subject)}&dates=${formatIso(dt)}/${formatIso(endDt)}`;
+
+            let html = `
+            <div class="agenda-item cat-${ev.color}">
+                <div style="flex:1;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="agenda-date"><i class="fa-regular fa-calendar"></i> ${dateStr}</span>
+                        <span class="agenda-time">${timeStr}</span>
+                    </div>
                     <div class="agenda-subject">${ev.subject}</div>
-                    <div class="agenda-meta"><span><i class="fa-solid fa-bell"></i> ${ev.preAlarm} dk</span><span><i class="fa-solid fa-rotate"></i> ${ev.recurType}</span></div>
+                    <div class="agenda-meta">
+                        <span><i class="fa-solid fa-bell"></i> ${getPreAlarmText(ev.preAlarm)}</span>
+                        <span><i class="fa-solid fa-arrows-rotate"></i> ${ev.recurType === 'none' ? 'Tekrar Yok' : ev.recurType.toUpperCase()}</span>
+                    </div>
                 </div>
-                <div class="d-flex flex-column gap-1 ms-2">
-                    <button class="btn-action edit" onclick="editEvent('${ev.id}')"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn-action del" onclick="deleteEvent('${ev.id}')"><i class="fa-solid fa-trash-can"></i></button>
+                <div style="margin-left: 10px; display:flex; flex-direction:column; gap:4px;">
+                    <a href="${gcalLink}" target="_blank" class="btn-action gcal" title="Google Takvim'e Ekle"><i class="fa-brands fa-google"></i></a>
+                    <button class="btn-action edit" onclick="editEvent('${ev.id}')" title="Düzenle"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-action del" onclick="deleteEvent('${ev.id}')" title="Sil"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>`;
+            container.innerHTML += html;
         });
     }
 
-    // ALARM MOTORU (Özetlenmiş)
-    setInterval(() => {
+    // --- ALARM MOTORU VE AKILLI ERTELEME ---
+    function startAlarmEngine() {
+        if(alarmCheckInterval) clearInterval(alarmCheckInterval);
+        alarmCheckInterval = setInterval(checkAlarms, 10000);
+        checkAlarms(); 
+    }
+
+    function checkAlarms() {
         let now = new Date().getTime();
         events.forEach(ev => {
-            if(ev.isCompleted) return;
-            let trigger = new Date(ev.datetime).getTime() - (ev.preAlarm * 60000);
-            if(ev.snoozedUntil) trigger = ev.snoozedUntil;
-            if(now >= trigger && activeAlarmId !== ev.id) {
-                activeAlarmId = ev.id;
-                playBeep();
-                window.parent.postMessage({type:'EPA_ALARM_START', subject:ev.subject}, '*');
-                document.getElementById('alarmSubject').innerText = ev.subject;
-                document.getElementById('alarmTimeText').innerText = "Vakit: " + new Date(ev.datetime).toLocaleTimeString('tr-TR');
-                document.getElementById('alarmOverlay').style.display = 'flex';
-            }
+            if (ev.isCompleted) return;
+            let triggerTime = new Date(ev.datetime).getTime() - (ev.preAlarm * 60000);
+            if (ev.snoozedUntil) triggerTime = ev.snoozedUntil;
+            if (now >= triggerTime && activeAlarmId !== ev.id) triggerAlarm(ev);
         });
-    }, 10000);
+    }
 
-    // DİĞER FONKSİYONLAR (Aynı iskelet)
-    function selectColor(c) { selectedColor=c; document.querySelectorAll('.color-opt').forEach(b=>b.classList.remove('active')); document.getElementById(`col-${c}`).classList.add('active'); }
-    function setFilter(f) { currentFilter=f; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); document.getElementById(`flt-${f}`).classList.add('active'); renderAgenda(); }
-    function editEvent(id) { let ev=events.find(e=>e.id===id); document.getElementById('evSubject').value=ev.subject; document.getElementById('evDateTime').value=ev.datetime; editingId=id; document.getElementById('btnSaveEvent').innerHTML='GÜNCELLE'; window.scrollTo(0,0); }
-    function deleteEvent(id) { if(confirm("Silinsin mi?")) { events=events.filter(e=>e.id!==id); localStorage.setItem('epa_calendar_events',JSON.stringify(events)); renderCalendar(); renderAgenda(); }}
-    function stopAlarm() { let idx=events.findIndex(e=>e.id===activeAlarmId); if(idx>-1) events[idx].isCompleted=true; localStorage.setItem('epa_calendar_events',JSON.stringify(events)); closeAlarm(); }
-    function openSmartSnooze() { document.getElementById('primaryAlarmBtns').style.display='none'; document.getElementById('smartSnoozePanel').style.display='block'; populateSnoozeValues(); }
-    function cancelSnooze() { document.getElementById('smartSnoozePanel').style.display='none'; document.getElementById('primaryAlarmBtns').style.display='flex'; }
-    function populateSnoozeValues() { let t=document.getElementById('snoozeType').value, s=document.getElementById('snoozeVal'); s.innerHTML=''; if(t==='min') [5,15,30,45].forEach(v=>s.innerHTML+=`<option value="${v}">${v} Dk</option>`); else if(t==='hour') for(let i=1;i<=11;i++) s.innerHTML+=`<option value="${i}">${i} Saat</option>`; else for(let i=1;i<=6;i++) s.innerHTML+=`<option value="${i}">${i} Gün</option>`; }
-    function applySmartSnooze() { let t=document.getElementById('snoozeType').value, v=parseInt(document.getElementById('snoozeVal').value), ms=0; if(t==='min') ms=v*60000; else if(t==='hour') ms=v*3600000; else ms=v*86400000; let idx=events.findIndex(e=>e.id===activeAlarmId); if(idx>-1) events[idx].snoozedUntil=new Date().getTime()+ms; localStorage.setItem('epa_calendar_events',JSON.stringify(events)); closeAlarm(); }
-    function closeAlarm() { document.getElementById('alarmOverlay').style.display='none'; activeAlarmId=null; window.parent.postMessage({type:'EPA_ALARM_STOP'}, '*'); renderAgenda(); }
-    function playBeep() { try { const ctx=new(window.AudioContext||window.webkitAudioContext)(); const osc=ctx.createOscillator(); const g=ctx.createGain(); osc.type='sine'; osc.frequency.setValueAtTime(880,ctx.currentTime); g.gain.setValueAtTime(0.2,ctx.currentTime); osc.connect(g); g.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime+0.5); } catch(e){} }
-    function updateRecurInterval() { let t=document.getElementById('evRecurType').value, s=document.getElementById('evRecurInterval'); s.innerHTML=''; if(t==='none'||t==='daily'||t==='yearly') { s.innerHTML='<option value="1">Standart</option>'; s.disabled=true; } else if(t==='weekly') { s.disabled=false; s.innerHTML='<option value="1">Her Hafta</option><option value="2">2 Hafta</option>'; } else { s.disabled=false; for(let i=1;i<=11;i++) s.innerHTML+=`<option value="${i}">${i} Ay</option>`; } }
-    function requestNotificationPermission() { if("Notification" in window) Notification.requestPermission(); }
+    function playBeep() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(880, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.5);
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.6);
+        } catch(e) {}
+    }
 
-    window.onload = () => { renderCalendar(); renderAgenda(); updateRecurInterval(); };
+    function triggerAlarm(ev) {
+        activeAlarmId = ev.id;
+        playBeep();
+        if ("Notification" in window && Notification.permission === "granted") {
+            new Notification("EPA Alarmı", { body: ev.subject, icon: "https://ykaracabay-source.github.io/emlakasistani/logo.jpg" });
+        }
+        window.parent.postMessage({ type: 'EPA_ALARM_START', subject: ev.subject }, '*');
+        
+        document.getElementById('alarmSubject').innerText = ev.subject;
+        document.getElementById('alarmTimeText').innerText = "Alarm Zamanı: " + new Date(ev.datetime).toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+        
+        document.getElementById('primaryAlarmBtns').style.display = 'flex';
+        document.getElementById('smartSnoozePanel').style.display = 'none';
+        
+        document.getElementById('alarmOverlay').style.display = 'flex';
+    }
+
+    function openSmartSnooze() {
+        document.getElementById('primaryAlarmBtns').style.display = 'none';
+        document.getElementById('smartSnoozePanel').style.display = 'block';
+        populateSnoozeValues(); 
+    }
+
+    function cancelSnooze() {
+        document.getElementById('smartSnoozePanel').style.display = 'none';
+        document.getElementById('primaryAlarmBtns').style.display = 'flex';
+    }
+
+    function populateSnoozeValues() {
+        let type = document.getElementById('snoozeType').value;
+        let sel = document.getElementById('snoozeVal');
+        sel.innerHTML = '';
+        
+        if(type === 'min') {
+            [5, 15, 30, 45].forEach(v => sel.innerHTML += `<option value="${v}">${v} Dakika</option>`);
+        } else if(type === 'hour') {
+            for(let i=1; i<=11; i++) sel.innerHTML += `<option value="${i}">${i} Saat</option>`;
+        } else if(type === 'day') {
+            for(let i=1; i<=6; i++) sel.innerHTML += `<option value="${i}">${i} Gün</option>`;
+        }
+    }
+
+    function applySmartSnooze() {
+        let type = document.getElementById('snoozeType').value;
+        let val = parseInt(document.getElementById('snoozeVal').value);
+        let msToAdd = 0;
+        
+        if(type === 'min') msToAdd = val * 60000;
+        if(type === 'hour') msToAdd = val * 3600000;
+        if(type === 'day') msToAdd = val * 86400000;
+
+        let evIndex = events.findIndex(e => e.id === activeAlarmId);
+        if(evIndex > -1) { 
+            events[evIndex].snoozedUntil = new Date().getTime() + msToAdd; 
+            saveAndRender(); 
+        }
+        closeAlarm();
+    }
+
+    function stopAlarm() {
+        let evIndex = events.findIndex(e => e.id === activeAlarmId);
+        if(evIndex > -1) {
+            let ev = events[evIndex];
+            if(ev.recurType === 'none') { ev.isCompleted = true; } 
+            else {
+                let currentDt = new Date(ev.datetime);
+                if(ev.recurType === 'daily') currentDt.setDate(currentDt.getDate() + 1);
+                else if(ev.recurType === 'weekly') currentDt.setDate(currentDt.getDate() + (7 * ev.recurInterval));
+                else if(ev.recurType === 'monthly') currentDt.setMonth(currentDt.getMonth() + ev.recurInterval);
+                else if(ev.recurType === 'yearly') currentDt.setFullYear(currentDt.getFullYear() + 1);
+                
+                ev.datetime = new Date(currentDt.getTime() - (currentDt.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+                ev.snoozedUntil = null; 
+            }
+            saveAndRender();
+        }
+        closeAlarm();
+    }
+
+    function closeAlarm() {
+        document.getElementById('alarmOverlay').style.display = 'none';
+        activeAlarmId = null;
+        window.parent.postMessage({ type: 'EPA_ALARM_STOP' }, '*');
+    }
+
+    window.onload = function() {
+        updateRecurInterval();
+        renderCalendar();
+        renderAgenda();
+        startAlarmEngine();
+    };
 </script>
 
 </body>
